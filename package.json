@@ -13,6 +13,7 @@
     "@sanity/image-url": "^1.0.1",
     "@thirdweb-dev/react": "^3.6.0",
     "@thirdweb-dev/sdk": "^3.6.0",
+    "chart.js": "^4.0.1",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.4",
     "ethers": "^5.7.2",
