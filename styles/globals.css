@@ -15,6 +15,10 @@ a {
   box-sizing: border-box;
 }
 
+.css-w94lu9 {
+  display: none !important;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
