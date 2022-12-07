@@ -1,12 +1,8 @@
 import "../styles/globals.css";
-import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
+// import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <ThirdwebProvider desiredChainId={ChainId.Goerli}>
-      <Component {...pageProps} />
-    </ThirdwebProvider>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;
