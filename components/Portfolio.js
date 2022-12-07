@@ -5,11 +5,16 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import Image from "next/image";
 import BalanceChart from "./BalanceChart";
 
-import { useSDK } from "@thirdweb-dev/react";
+// import { useSDK } from "@thirdweb-dev/react";
+import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
 const Portfolio = ({ sanityTokens }) => {
-  const sdk = useSDK();
-  const [walletBalance, setWalletBalance] = useState("0");
+  // const sdk = useSDK();
+  const sdk = ThirdwebSDK.fromPrivateKey(
+    process.env.NEXT_PUBLIC_PRIVATE_KEY,
+    "goerli"
+  );
+  const [walletBalance, setWalletBalance] = useState("Fetching ...");
 
   useEffect(() => {
     const calculateTotalBalance = async () => {

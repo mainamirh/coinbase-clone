@@ -23,7 +23,9 @@ const Sidebar = () => {
         {navItems.map((item, index) => (
           <NavItem key={index} onClick={() => setActiveNavItem(item.title)}>
             <NavIcon
-              style={{ color: item.title == activeNavItem && "#0052ff" }}
+              style={{
+                color: item.title == activeNavItem ? "#0052ff" : "unset",
+              }}
             >
               {item.icon}
             </NavIcon>

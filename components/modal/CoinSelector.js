@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
-import { useSDK } from "@thirdweb-dev/react";
+// import { useSDK } from "@thirdweb-dev/react";
+import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "../../lib/sanity";
 import { FaCheck } from "react-icons/fa";
@@ -12,7 +14,11 @@ const CoinSelector = ({
   setSelectedToken,
   sanityTokens,
 }) => {
-  const sdk = useSDK();
+  // const sdk = useSDK();
+  const sdk = ThirdwebSDK.fromPrivateKey(
+    process.env.NEXT_PUBLIC_PRIVATE_KEY,
+    "goerli"
+  );
   const [coinData, setCoinData] = useState(null);
 
   useEffect(() => {

@@ -6,14 +6,25 @@ import { client } from "../../lib/sanity";
 import { BiCopy } from "react-icons/bi";
 import { FaCheck } from "react-icons/fa";
 
-import { useAddress } from "@thirdweb-dev/react";
+// import { useAddress } from "@thirdweb-dev/react";
+import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
 const Receive = ({ setAction, selectedToken }) => {
-  const address = useAddress();
+  // const address = useAddress();
+  const [address, setAddress] = useState();
+  const sdk = ThirdwebSDK.fromPrivateKey(
+    process.env.NEXT_PUBLIC_PRIVATE_KEY,
+    "goerli"
+  );
+
   const [imageUrl, setImageUrl] = useState(null);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
+    sdk.wallet.getAddress().then((value) => {
+      setAddress(value);
+    });
+
     const url = imageUrlBuilder(client).image(selectedToken.logo).url();
     setImageUrl(url);
   }, [selectedToken]);

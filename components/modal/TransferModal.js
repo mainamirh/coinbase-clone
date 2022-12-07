@@ -6,13 +6,13 @@ import CoinSelector from "./CoinSelector";
 import Receive from "./Receive";
 import { TailSpin } from "react-loader-spinner";
 
-import { useNetwork } from "@thirdweb-dev/react";
+// import { useNetwork } from "@thirdweb-dev/react";
 
 const TransferModal = ({ sanityTokens }) => {
   const [action, setAction] = useState("send");
   const [selectedToken, setSelectedToken] = useState(sanityTokens[0]);
   const [txnHash, setTxnHash] = useState();
-  const network = useNetwork();
+  // const network = useNetwork();
 
   const renderLogic = () => {
     switch (action) {
@@ -80,7 +80,8 @@ const TransferModal = ({ sanityTokens }) => {
               <p style={{ fontSize: "1.1rem" }}>
                 See transaction on
                 <Link
-                  href={`https://${network[0].data.chain.name.toLowerCase()}.etherscan.io/tx/${txnHash}`}
+                  // href={`https://${network[0].data.chain.name.toLowerCase()}.etherscan.io/tx/${txnHash}`}
+                  href={`https://goerli.etherscan.io/tx/${txnHash}`}
                   target="_blank"
                   style={{ color: "#3773f5" }}
                 >

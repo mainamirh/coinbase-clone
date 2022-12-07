@@ -2,11 +2,11 @@ import Head from "next/head";
 // import Image from 'next/image'
 // import styles from '../styles/Home.module.css'
 import styled from "styled-components";
-import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
+// import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
 import Dashboard from "../components/Dashboard";
 
 export default function Home() {
-  const address = useAddress();
+  // const address = useAddress();
 
   return (
     <div className="">
@@ -18,8 +18,8 @@ export default function Home() {
 
       <main className="">
         <Wrapper>
-          {address ? (
-            <Dashboard address={address} />
+          <Dashboard />
+          {/* {address ? (
           ) : (
             <div>
               <TitleWrapper>Please connect your wallet</TitleWrapper>
@@ -29,7 +29,7 @@ export default function Home() {
                 accentColor="#0052ff"
               />
             </div>
-          )}
+          )} */}
         </Wrapper>
       </main>
 

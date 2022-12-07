@@ -5,15 +5,22 @@ import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "../../lib/sanity";
 
-import { useSDK } from "@thirdweb-dev/react";
+// import { useSDK } from "@thirdweb-dev/react";
+import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+
 import { ethers } from "ethers";
 
 const Transfer = ({ selectedToken, setAction, setTxnHash }) => {
-  const sdk = useSDK();
+  // const sdk = useSDK();
+  const sdk = ThirdwebSDK.fromPrivateKey(
+    process.env.NEXT_PUBLIC_PRIVATE_KEY,
+    "goerli"
+  );
   const [amount, setAmount] = useState("");
   const [recipient, setRecipient] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
   const [balance, setBalance] = useState("Fetching ...");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const getInfo = async () => {
@@ -36,6 +43,7 @@ const Transfer = ({ selectedToken, setAction, setTxnHash }) => {
 
   const sendCrypto = async (recipient, amount) => {
     if (selectedToken && ethers.utils.isAddress(recipient) && amount) {
+      setError("");
       setAction("transferring");
       try {
         const tokenContract = await sdk.getContract(
@@ -48,7 +56,7 @@ const Transfer = ({ selectedToken, setAction, setTxnHash }) => {
         console.log(error);
       }
     } else {
-      console.log("Some inputs are invalid.");
+      setError("Some inputs are invalid.");
     }
   };
 
@@ -86,6 +94,7 @@ const Transfer = ({ selectedToken, setAction, setTxnHash }) => {
           </div>
         </PayWith>
       </PayDetail>
+      <Error>{error}</Error>
       <Button onClick={() => sendCrypto(recipient, amount)}>Continue</Button>
       <Balance>
         <div style={{ marginRight: "10px" }}>Your Balance: </div>
@@ -204,4 +213,12 @@ const Balance = styled.div`
   font-weight: 600;
   color: #8a919e;
   margin: 1.5rem 0 0 0.5rem;
+`;
+
+const Error = styled.p`
+  color: red;
+  padding: 0;
+  padding-top: 5px;
+  margin: 0;
+  text-align: center;
 `;

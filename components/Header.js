@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ConnectWallet } from "@thirdweb-dev/react";
+// import { ConnectWallet } from "@thirdweb-dev/react";
 import Modal from "react-modal";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -29,12 +29,12 @@ const Header = ({ sanityTokens }) => {
   return (
     <Wrapper>
       <Title>Assets</Title>
-      <ConnectWallet />
-      <Button style={{ backgroundColor: "#0052ff", marginLeft: "10px" }}>
+      {/* <ConnectWallet /> */}
+      {/* <Button style={{ backgroundColor: "#0052ff", marginLeft: "10px" }}>
         Buy / Sell
-      </Button>
+      </Button> */}
       <Link href={"/?transfer=1"}>
-        <Button>Send /Receive</Button>
+        <Button style={{ backgroundColor: "#0052ff" }}>Send /Receive</Button>
       </Link>
       <Modal
         isOpen={!!router.query.transfer}
